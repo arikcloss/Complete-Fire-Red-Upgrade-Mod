@@ -1,116 +1,124 @@
-# Complete Fire Red Upgrade
+# Complete Fire Red Upgrade — Mod
 
-## What is this?
-A complete upgrade for FireRed, including an upgraded Battle Engine. By using this or any assets from this repository, you consent to never making money off your game (unless you have my explicit permission). That includes both pay-walls **as well as optional donations** (which includes ko-fi, Patreon, etc.). If you have a problem with this, feel free to send me a Discord message (Skeli#3917) and I will give you my PayPal so you can pay me $100000 for the hundreds if not thousands of hours I poured into this for **free** (I don't actually want your money - I'm trying to make a point). Not to mention it's illegal to profit off of an IP you don't own.
+A personal mod built on top of the [Complete Fire Red Upgrade](https://github.com/Skeli789/Complete-Fire-Red-Upgrade) (CFRU) engine for Pokémon FireRed. The goal is a **single, complete playthrough** where every catchable Pokémon and every event legendary is obtainable, with a friendlier early-game experience.
 
-**Before doing anything it is HIGHLY recommended the documentation be read thoroughly.**
+> **Legal / License notice**
+> By using this repository or any of its assets you consent to never making money off your game — that includes pay-walls **and optional donations** (ko-fi, Patreon, etc.). It is also illegal to profit off of an IP you don't own. This project is for personal/fan use only.
 
-## Features
-* Expanded PC Boxes (up to 25!)
-* Battle Engine Upgraded to Gen 8
-  * All Moves, Abilities, Items, Item Effects through Gen 8
-  * A complete set of move animations
-  * Vastly improved AI system with decision-making skills for all new battle effects
-  * Z Moves
-  * Mega Evolution / Primal Reversion / Ultra Burst
-  * Ability pop-ups
-  * Hidden Abilities
-  * Dissapearing HP-bars during Attack Animations
-  * Trainer Sliding / In-battle messages
-  * Expanded Poké Balls
-  * Battle Terrain
-  * Totem Pokémon
-  * Trainers with EVs
-  * Class-based Music
-  * Class-based Poké Balls
-  * Dynamic Trainer Backsprites
-  * Pre-battle mugshots
-  * Wild double battles
-  * Multi Battles (with a partner)
-  * New Evolution Methods
-  * Expanded Learnsets
-  * Badge-based obedience
-  * Shiny Charm + Oval Charm
-  * Level Scaling
-  * Updated Exp. Share
-  * Inverse Battles, Sky Battles
-  * Overworld trainer facing
-  * Move types light up on move menu based on effectiveness
-* Battle Frontier/Facilities
-* Expanded Move Reminder (up to 50 moves)
-* Improved Tm/Hm Expansion, Reusable TMs
-* Updated Pickup mechanics
-* Swarms
-* Day/Night/Seasons
-* Roaming Pokémon
-* JPANs engine features ported and redesigned/improved in many ways
-  * Character Customization
-  * Lots of new scripting specials
-  * Whiteout hack / text updates
-  * And more!
-* Save-block expansion
-* DexNav and secondary PokéTools Start Menu
-* Dynamic overworld palettes
-* Updated Daycare system
-* Expanded Text Names (Abilities, etc)
-* Select Pokemon from PC directly
-* Scrolling summary screen
-* Base stats on pokedex summary screen
-* Updated repel system
-* Configurable Start Menu
-* Follow Me
-* Expanded Pokemon in the Hall of Fame
-* Triple Layer Blocks
-* Expanded Text Buffers
-* Footstep noise in grass & on sand
-* Omnidirectional Jumping
-* Item Image on obtain
-* Move Items on Party Screen
-* New Field Moves like Rock Climb & Defog
-* Expanded Coins, Safari Balls/Steps
-* Fairy Type
-* Oval Charm
-* And More!
+---
 
-**NOTE** Personalized options are available in *src/config.h*. The options can be customized by commenting and uncommenting lines.
+## Table of Contents
 
-**Note** Pokemon Expansion can be found [here](https://github.com/Skeli789/Dynamic-Pokemon-Expansion)
+- [Mod Features](#mod-features)
+- [Base CFRU Features](#base-cfru-features)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Notes](#notes)
 
-## Installation Instructions
+---
+
+## Mod Features
+
+Everything below was added on top of the base CFRU engine.
+
+### 1. All 151 Kanto Pokémon catchable in one game
+LeafGreen-exclusive species were added to FireRed's wild tables (replacing duplicate slots, so no FireRed-exclusive was lost). Full dex completion is now possible with a single copy of the game.
+
+| Species | Where to find |
+|---|---|
+| Sandshrew | Routes 4, 8, 11 |
+| Vulpix | Route 7, Pokémon Mansion |
+| Bellsprout / Weepinbell | Routes 5, 6, 7, 12, 24 |
+| Pinsir | Safari Zone |
+| Magmar | Mt. Ember |
+| Slowpoke / Slowbro | Seafoam Islands (water) + fishing |
+| Staryu | Fishing (common routes) |
+| Kabuto | Fishing (rare, Route 4 & friends) |
+| Marill | Ruin Valley (land + water) |
+| Misdreavus | Lost Cave |
+| Sneasel | Icefall Cave |
+| Remoraid | Sevii Islands (fishing) |
+| Mantine | Sevii Islands (water) |
+| **Mew** | **Rare fishing in Cerulean Cave** |
+
+### 2. Event legendaries without the events
+FireRed already contains all the event maps, but the required items were only distributed between 2004–2009. They are now granted automatically **after your first Hall of Fame entry**:
+
+- **Deoxys** (Lv. 30) — Birth Island, via the **Aurora Ticket**
+- **Lugia** (Lv. 70) — Navel Rock, via the **Mystic Ticket**
+- **Ho-Oh** (Lv. 70) — Navel Rock, via the **Mystic Ticket**
+
+(The ferry to both islands departs from Vermilion City.)
+
+### 3. 2.5× EXP for the player's Pokémon
+Experience gain is multiplied by **2.5** (`×5 ÷ 2`) for all of your Pokémon, in every battle (wild, trainer and capture). The values can be tweaked in `src/config.h`.
+
+### 4. Starter Pokémon on Route 1
+**Bulbasaur, Charmander and Squirtle** appear as rare wild encounters (slots 9–11) on Route 1. Since Route 1 is only reachable after Professor Oak gives you your first partner, this naturally unlocks once you start your journey — letting you catch the other two starters.
+
+### 5. Custom battle backgrounds
+20 custom battle terrain backgrounds (Grass, Forest, Cave, Volcano, Space, etc.) were added under `graphics/Backgrounds/Battle_Terrain/`.
+
+### 6. Applied patches (in `ips/`)
+- **BW-style Menus** combo patch
+- **Final Wood** tileset
+- **EXP All**
+- **HGSS-style tiles** (Omega Fix)
+
+> The `Dynamic_Surfing_FR.ups` patch is kept in `ips/` but was **not** applied.
+
+---
+
+## Base CFRU Features
+
+The mod is built on the CFRU engine, which upgrades FireRed to a Gen 8 battle system:
+
+- Battle engine upgraded to Gen 8 (all moves, abilities, items and item effects through Gen 8)
+- Complete move animations and vastly improved AI
+- Z-Moves, Mega Evolution / Primal Reversion / Ultra Burst
+- Ability pop-ups and Hidden Abilities
+- Expanded Poké Balls and Battle Terrain
+- Totem Pokémon, wild double battles, Multi Battles
+- New evolution methods and expanded learnsets
+- Updated Exp. Share, Shiny Charm + Oval Charm, level scaling
+- Battle Frontier/Facilities, Swarms, Roaming Pokémon
+- Day/Night/Seasons, DexNav, Follow Me, character customization
+- Expanded PC Boxes (up to 25), expanded save-block
+- Fairy Type, reusable TMs, move reminder up to 50 moves
+- And much more — see the [official CFRU repo](https://github.com/Skeli789/Complete-Fire-Red-Upgrade)
+
+---
+
+## Getting Started
+
 ### Windows
-See [the wiki](https://github.com/Skeli789/Complete-Fire-Red-Upgrade/wiki/Windows-Installation-Instructions).
+See the [CFRU installation wiki](https://github.com/Skeli789/Complete-Fire-Red-Upgrade/wiki/Windows-Installation-Instructions).
 
-### UNIX-like OS (Linux, MacOS, ...)
-1. Install devkitPro with instructions [here](https://devkitpro.org/wiki/Getting_Started).
+### Linux / macOS
+1. Install [devkitPro](https://devkitpro.org/wiki/Getting_Started) and add `${DEVKITARM}/bin/` to your `PATH`.
+2. Install Python 3.6+.
+3. Get a clean FireRed (U) ROM, put it in this directory and rename it to **`BPRE0.gba`** (a pre-built copy is also included in this repo).
+4. Build:
+   ```bash
+   python3 scripts/make.py
+   ```
+5. The result is **`test.gba`** (plus a generated `offsets.ini`).
 
-2. Export `${DEVKITARM}/bin/` to your `PATH` variable.
+---
 
-3. Make sure you've installed python 3.6+ and it can be called directly via either `python` or `python3`.
+## Configuration
 
-4. Clone the repo and go inside:   
-```bash
-git clone https://github.com/Skeli789/Complete-Fire-Red-Upgrade
-cd Complete-Fire-Red-Upgrade
+Personalized options live in **`src/config.h`** — just comment/uncomment lines. The most relevant for this mod:
+
+```c
+#define EXP_MULTIPLIER_NUM 5   // EXP multiplier numerator (5/2 = 2.5x)
+#define EXP_MULTIPLIER_DEN 2   // EXP multiplier denominator
 ```
 
-5. Get your ROM into the current directory and rename it to **BPRE0.gba**.
-
-6. Configure the offset you want to insert the code:
-In *scripts/make.py* change `OFFSET_TO_PUT=YYY` to the location you want to insert the data.
-
-7. Run `python scripts/make.py` (or `python3 scripts/make.py` if you’ve installed multiple python versions).
-
-A new gba file will appear named as **test.gba** and an **offsets.ini** file.
-Those are your resultant files.
+---
 
 ## Notes
 
-Anytime you make changes, the compiler will only compile the files you have changed.
-
-### Specific to Windows
-Any changes made to header files will require you to type ``python scripts//clean.py build``
-in cmd and then rerun the build scripts. For more command line options, see "Engine
-Scripts" in the documentation.
-
-### Specific to UNIX-like OS (linux, macOS, ...):
-Any changes made to header files will require you to clean everything in *build/* and then rerun the build scripts.
+- The compiler only recompiles the files you changed.
+- Changes to header files require cleaning `build/` first (see "Engine Scripts" in the CFRU documentation).
+- `BPRE0.gba` is the patched base ROM; `test.gba` is the build output and is **not** tracked.
