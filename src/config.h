@@ -17,7 +17,7 @@
 #define VAR_TERRAIN 0x5000 //Set to a terrain type for a battle to begin with the given terrain
 #define VAR_TOTEM 0x5001 //to var + 3 (0x5004)
 #define VAR_BACKSPRITE_SWITCH 0x5006 //This var can be set to a number to change the Player's backsprite
-//#define VAR_BATTLE_BG 0x5007 //Set this var to a custom background id
+#define VAR_BATTLE_BG 0x4000 //Set this var to a custom background id (temporary var, resets on map change)
 #define VAR_SWARM_INDEX 0x5008 //Set by the engine
 #define VAR_SWARM_DAILY_EVENT 0x5009 //Set by the engine. Used to tell the game if a swarm has already been generated for the day. (Uses + 1 var also)
 #define VAR_DEFAULT_WALKING_SCRIPT 0x500B  //Walking scripts from JPAN's engine. His engine used 0x407E.
@@ -305,6 +305,8 @@ enum //These vars need to be one after the other (hence the enum)
 #define SWSH_CATCHING_DIFFICULTY_MODIFIER //Trying to catch a Pokemon that's higher level than your current Pokemon makes it harder to catch
 
 /*===== Exp Gain Options =====*/
+#define EXP_MULTIPLIER_NUM 5 //Player's Pokemon gain EXP multiplied by this value...
+#define EXP_MULTIPLIER_DEN 2 //...and divided by this one (5/2 = 2.5x EXP)
 //#define TRAINER_EXP_BOOST // Uncomment this line to give the Exp boost for battling a Trainer's Pokemon (Pre Gen 7)
 //#define OLD_EXP_SPLIT //Uncomment this line to split the Exp amongst all participating pokemon (Pre Gen 6)
 //#define FLAT_EXP_FORMULA //Uncomment this line to use a Flat Exp calculation formula (Gens 2 - 4, 6)

@@ -263,6 +263,9 @@ void atk23_getexp(void)
 
 	SKIP_EXP_CALC:
 		calculatedExp = MathMax(1, calculatedExp);
+		#ifdef EXP_MULTIPLIER_NUM
+		calculatedExp = (calculatedExp * EXP_MULTIPLIER_NUM) / EXP_MULTIPLIER_DEN; //2.5x EXP for the player's Pokemon
+		#endif
 		gBattleMoveDamage = calculatedExp;
 
 		gBattleScripting.expStateTracker++;

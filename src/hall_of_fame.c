@@ -1,6 +1,8 @@
 #include "defines.h"
 #include "../include/hall_of_fame.h"
+#include "../include/event_data.h"
 #include "../include/field_weather.h"
+#include "../include/item.h"
 #include "../include/menu.h"
 #include "../include/overworld.h"
 #include "../include/save.h"
@@ -8,6 +10,8 @@
 #include "../include/script_menu.h"
 #include "../include/sound.h"
 #include "../include/string_util.h"
+#include "../include/constants/flags.h"
+#include "../include/constants/items.h"
 
 #include "../include/new/mega.h"
 
@@ -31,8 +35,23 @@ void Task_HofPC_PrintMonInfo(u8 taskId);
 void Task_Hof_InitMonData(u8 taskId);
 void HallOfFame_PrintMonInfo(struct HallofFameMon *currMon, unusedArg u8 a1, unusedArg u8 a2);
 
+static void GiveEventLegendaryTickets(void)
+{
+	if (!CheckBagHasItem(ITEM_AURORA_TICKET, 1))
+	{
+		AddBagItem(ITEM_AURORA_TICKET, 1);
+		FlagSet(FLAG_ENABLE_SHIP_BIRTH_ISLAND);
+	}
+	if (!CheckBagHasItem(ITEM_MYSTIC_TICKET, 1))
+	{
+		AddBagItem(ITEM_MYSTIC_TICKET, 1);
+		FlagSet(FLAG_ENABLE_SHIP_NAVEL_ROCK);
+	}
+}
+
 void CB2_DoHallOfFameScreen(void)
 {
+	GiveEventLegendaryTickets();
 	if (!InitHallOfFameScreen())
 	{
 		u8 taskId = CreateTask(Task_Hof_InitMonData, 0);
